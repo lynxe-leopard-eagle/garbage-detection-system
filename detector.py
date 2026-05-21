@@ -1,8 +1,3 @@
-"""
-YOLO检测器封装模块
-用于封装YOLO模型的加载和推理功能
-"""
-
 import os
 import sys
 import time
@@ -33,24 +28,7 @@ except ImportError:
 
 
 class YOLODetector:
-    """
-    YOLO检测器封装类
-    
-    功能：
-    1. 加载YOLO模型
-    2. 执行目标检测
-    3. 后处理检测结果
-    4. 绘制检测框和标签
-    """
-    
     def __init__(self, model_path: str = None, device: str = 'auto'):
-        """
-        初始化YOLO检测器
-        
-        Args:
-            model_path: 模型路径，如果为None则使用默认模型
-            device: 推理设备 ('cpu', 'cuda', 'auto')
-        """
         self.model_path = model_path
         self.device = self._get_device(device)
         self.model = None
@@ -142,24 +120,6 @@ class YOLODetector:
             self.model = None
     
     def detect(self, image: np.ndarray, conf_threshold: float = 0.5, iou_threshold: float = 0.45) -> List[Dict]:
-        """
-        执行目标检测
-        
-        Args:
-            image: 输入图像 (BGR格式)
-            conf_threshold: 置信度阈值
-            iou_threshold: NMS IoU阈值
-            
-        Returns:
-            检测结果列表，每个元素包含:
-            - bbox: [x1, y1, x2, y2]
-            - confidence: 置信度
-            - class_id: 类别ID
-            - class_name: 类别名称（英文）
-            - class_name_cn: 类别名称（中文）
-            - category: 垃圾类别（英文）
-            - category_cn: 垃圾类别（中文）
-        """
         if self.model is None:
             logger.error("模型未加载")
             return []
@@ -198,15 +158,15 @@ class YOLODetector:
                     # YOLOv11m模型可能需要从0开始索引，而映射文件是0-43
                     if class_id < len(self.class_mapping):
                         class_info = self.class_mapping[class_id]
-                    # else:
-                    #     # 如果类别ID超出范围，回退到未知类别
-                    #     class_info = {
-                    #         'name_en': f'unknown_{class_id}',
-                    #         'name_cn': f'未知_{class_id}',
-                    #         'category_en': 'Unknown',
-                    #         'category_cn': '未知'
-                    #     }
-                    #
+                    else:
+                        # 如果类别ID超出范围，回退到未知类别
+                        class_info = {
+                            'name_en': f'unknown_{class_id}',
+                            'name_cn': f'未知_{class_id}',
+                            'category_en': 'Unknown',
+                            'category_cn': '未知'
+                        }
+                    
                     detection = {
                         'bbox': [x1, y1, x2, y2],
                         'confidence': confidence,
@@ -228,16 +188,6 @@ class YOLODetector:
             return []
     
     def draw_detections(self, image: np.ndarray, detections: List[Dict]) -> np.ndarray:
-        """
-        在图像上绘制检测结果
-        
-        Args:
-            image: 输入图像
-            detections: 检测结果列表
-            
-        Returns:
-            绘制后的图像
-        """
         try:
             from PIL import Image, ImageDraw, ImageFont
             import numpy as np
@@ -360,7 +310,6 @@ _detector_lock = threading.Lock()
 
 
 def get_detector(model_path: str = None) -> YOLODetector:
-    """获取全局检测器实例"""
     global _detector_instance
     with _detector_lock:
         if _detector_instance is None:
