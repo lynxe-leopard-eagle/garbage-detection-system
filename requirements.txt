@@ -1,0 +1,43 @@
+## **requirements.txt**
+
+```txt
+# 核心框架
+torch>=2.0.0
+torchvision>=0.15.0
+ultralytics>=8.0.0
+
+# 图像处理
+opencv-python>=4.8.0
+Pillow>=9.5.0
+numpy>=1.24.0
+
+# 图形界面
+PyQt5>=5.15.0
+
+# 数据库
+sqlalchemy>=2.0.0
+
+# 导出功能
+pandas>=2.0.0
+openpyxl>=3.1.0
+python-docx>=1.0.0
+
+# 语音识别 (离线 FunASR)
+funasr>=0.6.0
+modelscope>=1.9.0
+
+# 语音播报
+pyttsx3>=2.90
+
+# 音频采集
+pyaudio>=0.2.11
+
+# 可选：MySQL 支持
+# pymysql>=1.0.0
+
+# 可选：模型验证 (ONNX, TensorRT)
+# onnx>=1.14.0
+# tensorrt>=8.6.0
+
+# 工具
+matplotlib>=3.7.0
