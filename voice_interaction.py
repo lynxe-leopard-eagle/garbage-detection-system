@@ -1,7 +1,3 @@
-"""
-语音交互模块 - 纯本地 FunASR 实现（修复版）
-功能：使用 FunASR 进行语音识别，支持 PyQt 集成
-"""
 import os
 import sys
 import io
@@ -18,7 +14,6 @@ from pathlib import Path
 import queue
 import numpy as np
 
-# PyQt 导入（可选）
 try:
     from PyQt5.QtCore import QObject, pyqtSignal
     HAS_QT = True
