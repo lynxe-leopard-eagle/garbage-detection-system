@@ -1,9 +1,3 @@
-"""
-导出管理模块
-支持将检测结果导出为 Excel、CSV、Word 等格式
-版本：v2.1 (Word报告增强 + 字段修复)
-"""
-
 import os
 import sys
 import csv
@@ -25,10 +19,6 @@ logger = logging.getLogger(__name__)
 
 
 class ExportManager:
-    """
-    导出管理器
-    """
-
     def __init__(self, output_dir: str = None):
         if output_dir is None:
             self.output_dir = Path(__file__).parent.parent.parent / 'exports'
