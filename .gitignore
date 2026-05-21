@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.Python
+venv/
+env/
+ENV/
+
+# 数据集和模型
+datasets/
+*.db
+*.pt
+*.pth
+*.weights
+*.onnx
+*.engine
+
+# 输出目录
+exports/
+reports/
+screenshots/
+logs/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# 临时文件
+*.log
+*.tmp
+.DS_Store
