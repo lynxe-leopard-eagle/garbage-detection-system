@@ -1,7 +1,3 @@
-"""
-语音播报模块 - pyttsx3 稳定异步版
-使用独立引擎实例 + 队列 + 线程，彻底解决冲突和残留问题
-"""
 import logging
 import threading
 import queue
