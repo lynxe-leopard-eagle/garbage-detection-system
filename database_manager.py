@@ -1,7 +1,3 @@
-"""
-数据库管理器 - 支持SQLite和MySQL
-"""
-
 import os
 import sqlite3
 import logging
